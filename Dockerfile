@@ -32,17 +32,15 @@ RUN apt-get update && \
     apt-get -y autoremove && \
     apt-get clean autoclean && \
     rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/* &&\
-
     pip3 install empy \
                  jinja2 \
                  packaging \
                  pyros-genmsg \
                  toml \
                  pyyaml &&\
-
-git clone https://github.com/PX4/Firmware.git ${FIRMWARE_DIR} &&\
-git -C ${FIRMWARE_DIR} checkout master &&\
-git -C ${FIRMWARE_DIR} submodule update --init --recursive &&
+    git clone https://github.com/PX4/Firmware.git ${FIRMWARE_DIR} &&\
+    git -C ${FIRMWARE_DIR} checkout master &&\
+    git -C ${FIRMWARE_DIR} submodule update --init --recursive
 
 COPY edit_rcS.bash ${WORKSPACE_DIR}
 COPY entrypoint.sh /root/entrypoint.sh
