@@ -44,17 +44,16 @@ RUN apt-get update && \
 
 COPY edit_rcS.bash ${WORKSPACE_DIR}
 COPY entrypoint.sh /root/entrypoint.sh
-COPY sitl_rtsp_proxy ${SITL_RTSP_PROXY}
+RUN chmod +x /root/entrypoint.sh
 
-RUN chmod +x /root/entrypoint.sh &&\
-    ["/bin/bash", "-c", " \
+RUN ["/bin/bash", "-c", " \
     cd ${FIRMWARE_DIR} && \
     DONT_RUN=1 make px4_sitl gazebo && \
     DONT_RUN=1 make px4_sitl gazebo \
 "]
 
-RUN cmake -B${SITL_RTSP_PROXY}/build -H${SITL_RTSP_PROXY} &&\
-cmake --build ${SITL_RTSP_PROXY}/build
-
+COPY sitl_rtsp_proxy ${SITL_RTSP_PROXY}
+RUN cmake -B${SITL_RTSP_PROXY}/build -H${SITL_RTSP_PROXY}
+RUN cmake --build ${SITL_RTSP_PROXY}/build
 
 ENTRYPOINT ["/root/entrypoint.sh"]
