@@ -23,20 +23,22 @@ function get_vm_host_ip {
     echo "$(getent hosts host.docker.internal | awk '{ print $1 }')"
 }
 
-if [ "$#" -eq 1 ]; then
-    if ! is_ip_valid $1; then exit 1; fi
-    echo "14540 will be associated to $1"
-    API_PARAM="-t $1"
-elif [ "$#" -eq 2 ]; then
-    if ! is_ip_valid $1 || ! is_ip_valid $2; then exit 1; fi
-    echo "14550 will be associated to $1"
+
+if [ "$#" -eq 2 ]; then
+    if ! is_ip_valid $2; then exit 1; fi
     echo "14540 will be associated to $2"
-    QGC_PARAM="-t $1"
     API_PARAM="-t $2"
-elif [ "$#" -gt 2 ]; then
-    echo "Invalid parameters: [<IP for 14550> <IP for 14540>] | [<IP for 14540>]"
+elif [ "$#" -eq 3 ]; then
+    if ! is_ip_valid $2 || ! is_ip_valid $3; then exit 1; fi
+    echo "14550 will be associated to $2"
+    echo "14540 will be associated to $3"
+    QGC_PARAM="-t $2"
+    API_PARAM="-t $3"
+elif [ "$#" -gt 3 ]; then
+    echo "Invalid parameters: [<SYS_ID> <IP for 14550> <IP for 14540>]"
     exit 1;
 fi
+
 
 # Broadcast doesn't work with docker from a VM (macOS or Windows), so we default to the vm host (host.docker.internal)
 if is_docker_vm; then
@@ -47,7 +49,9 @@ fi
 
 CONFIG_FILE=${FIRMWARE_DIR}/build/px4_sitl_default/etc/init.d-posix/rcS
 
-sed -i "s/mavlink start \-x \-u \$udp_gcs_port_local -r 4000000/mavlink start -x -u \$udp_gcs_port_local -r 4000000 ${QGC_PARAM}/" ${CONFIG_FILE}
-sed -i "s/mavlink start \-x \-u \$udp_offboard_port_local -r 4000000 -m onboard -o \$udp_offboard_port_remote/mavlink start -x -u \$udp_offboard_port_local -r 4000000 -o \$udp_offboard_port_remote ${API_PARAM}/" ${CONFIG_FILE}
+sed -i "s/mavlink start \-x \-u \$udp_gcs_port_local -r 4000000/mavlink start -x -u \$udp_gcs_port_local -r 4000000 ${QGC_PARAM}/" ${CONF_FILE}
+sed -i "s/mavlink start \-x \-u \$udp_offboard_port_local -r 4000000 -m onboard -o \$udp_offboard_port_remote ${API_PARAM}/" ${CONFIG_FILE}
+sed -i "/s param set MAV_SYS_ID \$((px4_instance+1)/param set MAV_SYS_ID \$((px4_instance + ${3})/" ${CONFIG_FILE}
 
+echo 'param set MAV_PROTO_VER 2' >> ${CONFIG_FILE}
 echo 'param set MAV_BROADCAST 1' >> ${CONFIG_FILE}
