@@ -51,7 +51,7 @@ CONFIG_FILE=${FIRMWARE_DIR}/build/px4_sitl_default/etc/init.d-posix/rcS
 
 sed -i "s/mavlink start \-x \-u \$udp_gcs_port_local -r 4000000/mavlink start -x -u \$udp_gcs_port_local -r 4000000 ${QGC_PARAM}/" ${CONF_FILE}
 sed -i "s/mavlink start \-x \-u \$udp_offboard_port_local -r 4000000 -m onboard -o \$udp_offboard_port_remote ${API_PARAM}/" ${CONFIG_FILE}
-sed -i "/s param set MAV_SYS_ID \$((px4_instance+1)/param set MAV_SYS_ID \$((px4_instance + ${3})/" ${CONFIG_FILE}
+sed -i "s/param set MAV_SYS_ID \$((px4_instance+1)/param set MAV_SYS_ID \$((px4_instance + ${3})/" ${CONFIG_FILE}
 
 echo 'param set MAV_PROTO_VER 2' >> ${CONFIG_FILE}
 echo 'param set MAV_BROADCAST 1' >> ${CONFIG_FILE}
