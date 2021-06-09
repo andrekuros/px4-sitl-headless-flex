@@ -33,29 +33,28 @@ RUN apt-get update && \
     apt-get clean autoclean && \
     rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
 
-RUN pip3 install empy \
+&& pip3 install empy \
                  jinja2 \
                  packaging \
                  pyros-genmsg \
                  toml \
                  pyyaml
 
-RUN git clone https://github.com/PX4/Firmware.git ${FIRMWARE_DIR}
-RUN git -C ${FIRMWARE_DIR} checkout master
-RUN git -C ${FIRMWARE_DIR} submodule update --init --recursive
+&& git clone https://github.com/PX4/Firmware.git ${FIRMWARE_DIR} 
+&& git -C ${FIRMWARE_DIR} checkout master 
+&& git -C ${FIRMWARE_DIR} submodule update --init --recursive
 
 COPY edit_rcS.bash ${WORKSPACE_DIR}
 COPY entrypoint.sh /root/entrypoint.sh
-RUN chmod +x /root/entrypoint.sh
+COPY sitl_rtsp_proxy ${SITL_RTSP_PROXY}
 
-RUN ["/bin/bash", "-c", " \
+RUN chmod +x /root/entrypoint.sh
+&&  ["/bin/bash", "-c", " \
     cd ${FIRMWARE_DIR} && \
     DONT_RUN=1 make px4_sitl gazebo && \
     DONT_RUN=1 make px4_sitl gazebo \
 "]
-
-COPY sitl_rtsp_proxy ${SITL_RTSP_PROXY}
-RUN cmake -B${SITL_RTSP_PROXY}/build -H${SITL_RTSP_PROXY}
-RUN cmake --build ${SITL_RTSP_PROXY}/build
+&& cmake -B${SITL_RTSP_PROXY}/build -H${SITL_RTSP_PROXY}
+&& cmake --build ${SITL_RTSP_PROXY}/build
 
 ENTRYPOINT ["/root/entrypoint.sh"]
