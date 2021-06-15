@@ -10,7 +10,7 @@ sudo docker build https://github.com/arkro99125/px4-sitl-gazeboheadless-custom.g
 **RUN**
 
 ```
-sudo docker run --rm -it px4-gazebo-headless-custom -i 1 -a 192.168.0.3 -q 192.168.0.3
+sudo docker run --rm -it px4-gazeboheadless-custom -i 1 -a 192.168.0.3 -q 192.168.0.3
 ```
 
 
