@@ -10,7 +10,7 @@ sudo docker build https://github.com/arkro99125/px4-sitl-gazeboheadless-custom.g
 **RUN**
 
 ```
-sudo docker run --rm -it px4-gazeboheadless-custom -i 1 -a 192.168.0.3 -q 192.168.0.3
+sudo docker run --rm -it px4-gazeboheadless-custom --sysid 11 --gip 192.168.0.6 --gport 14550 --aip 192.168.0.6 --aport 14540 --speed 1 --param "MPC_XY_CRUISE 20" --param "MIS_DIST_1WP 3000" --param "MPC_XY_VEL_MAX 20" --param "MIS_DIST_WPS 3000"
 ```
 
 
