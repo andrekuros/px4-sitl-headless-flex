@@ -22,8 +22,6 @@ function show_help {
     echo ""   
 }
 
-OPTIND=1 # Reset in case getopts has been used previously in the shell.
-
 vehicle=iris
 world=empty
 SYS_ID=1
@@ -33,22 +31,21 @@ PORT_API=14540
 IP_GCS=127.0.0.1
 PORT_GCS=14550
 
-while getopts "h?veh:world:speed:sysid:aip:aport:gip:gport:param:" opt; 
-do
-    case "$opt" in
-       h|\?)
-          show_help
-          exit 0;;
-       veh)    vehicle=$OPTARG;;
-       world)  world=$OPTARG ;;
-       sysid)  SYS_ID=$OPTARG;;
-       aip)    IP_API=$OPTARG;;
-       aport)  PORT_API=$OPTARG;;
-       gip)    IP_GCS=$OPTARG;;
-       gport)  PORT_GCS=$OPTARG;;
-       speed)  SIM_SPEED=$OPTARG;;
-       param)  PARAMS_SET+=("$OPTARG");;
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+         -help  | --help )   show_help exit 0;;
+         -veh   | --veh  )   vehicle=$2; shift;;
+         -world | --world)   world=$2; shift;;
+         -sysid | --sysid)   SYS_ID=$2; shift;;
+         -aip   | --aip  )   IP_API=$2; shift;;
+         -aport | --aport)   PORT_API=$2; shift;;
+         -gip   | --gip  )   IP_GCS=$2; shift;;
+         -gport | --gport)   PORT_GCS=$2; shift;;
+         -speed | --speed)   SIM_SPEED=$2; shift;;
+         -param | --param)   PARAMS_SET+=("$2"); shift;;
+         *) echo "Unknown parameter passed: $1"; exit 1 ;;
     esac
+    shift
 done
 
 Xvfb :99 -screen 0 1600x1200x24+32 &
