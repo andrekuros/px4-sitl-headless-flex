@@ -28,7 +28,9 @@ vehicle=iris
 world=empty
 SYS_ID=1
 SIM_SPEED=1
+IP_API=127.0.0.1
 PORT_API=14540
+GCS_API=127.0.0.1
 PORT_GCS=14550
 
 while getopts "h?veh:world:speed:sysid:aip:aport:gip:gport:param:" opt; 
