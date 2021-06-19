@@ -30,7 +30,7 @@ SYS_ID=1
 SIM_SPEED=1
 IP_API=127.0.0.1
 PORT_API=14540
-GCS_API=127.0.0.1
+IP_GCS=127.0.0.1
 PORT_GCS=14550
 
 while getopts "h?veh:world:speed:sysid:aip:aport:gip:gport:param:" opt; 
@@ -44,8 +44,8 @@ do
        sysid)  SYS_ID=$OPTARG;;
        aip)    IP_API=$OPTARG;;
        aport)  PORT_API=$OPTARG;;
-       qip)    IP_GCS=$OPTARG;;
-       qport)  PORT_GCS=$OPTARG;;
+       gip)    IP_GCS=$OPTARG;;
+       gport)  PORT_GCS=$OPTARG;;
        speed)  SIM_SPEED=$OPTARG;;
        param)  PARAMS_SET+=("$OPTARG");;
     esac
