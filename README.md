@@ -4,7 +4,7 @@ This project is based on JonasVautherin/px4-gazebo-headless (https://github.com/
 
 **BUILD**   
 ```
-sudo docker build https://github.com/arkro99125/px4-sitl-headless-flex.git#main -t px4-sitl-headless-flex
+sudo docker build https://github.com/andrekuros/px4-sitl-headless-flex.git#main -t px4-sitl-headless-flex
 ``` 
 
 **RUN**
@@ -25,7 +25,10 @@ Options to set at run-time:
   
 **Example single run** 
 ```
-sudo docker run --rm -it px4-sitl-headless-flex -sysid 11 -gip 192.168.0.6 -gport 14550 -aip 192.168.0.6 -aport 14542 -speed 1 -param "MPC_XY_CRUISE 20" -param "MIS_DIST_1WP 3000" -param "MPC_XY_VEL_MAX 20" -param "MIS_DIST_WPS 3000"
+sudo docker run --rm -it px4-sitl-headless-flex -sysid 11 -speed 1\  
+        -gip 192.168.0.6 -gport 14550 -aip 192.168.0.6 -aport 14542\  
+        -param "MPC_XY_CRUISE 20" -param "MIS_DIST_1WP 3000"\  
+        -param "MPC_XY_VEL_MAX 20" -param "MIS_DIST_WPS 3000"
 ```
   
 **Example Multiples Instances in a Mininet software based network**
