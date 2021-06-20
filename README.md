@@ -21,7 +21,7 @@ Options to set at run-time:
 |aport|\<int\>|Set the Port to which PX4 will send MAVLink to API (default: 14540)|
 |gip|\<IP\>|Set the IP to which PX4 will send MAVLink on UDP to GCS(default: localhost)|
 |gport|\<int\>|Set the Port to which PX4 will send MAVLink on UDP to GCS (defaults: 14550)|
-|param|\<\"NAME VALUE\"\>|Set any MAVLink param (multiples) (eg. -param MPC_XY_CRUISE 20 -param MIS_DIST_1WP 3000)|  
+|param|\<\"NAME VALUE\"\>|Set MAVLink param(multiples) (eg. -param MPC_XY_CRUISE 20 -param MIS_DIST_1WP 300)|  
   
 **Example single run** 
 ```
@@ -32,7 +32,7 @@ sudo docker run --rm -it px4-sitl-headless-flex -sysid 11 -gip 192.168.0.6 -gpor
   
  The first objetive of this project was to create the possibility to start multiple instances in a simulated network of an airspace controlled UAV scenario. To do this, we start a Mininet (https://github.com/mininet/mininet) docker based network throught the CONTAINERNET (https://github.com/containernet/containernet) with mulple instances of the sitl-px4.   
     
- A very first example to run the network with 13 UAVs folling the basic ContainetNet example:
+ A very first example to run a network with 13 UAVs following the basic ContainetNet example:
   
   ```
 from mininet.net import Containernet
