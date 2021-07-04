@@ -29,6 +29,8 @@ RUN apt-get update && \
                        libgstrtspserver-1.0-dev \
                        xvfb \                       
                        iproute2 \
+                       net-tools \
+                       iputils \
                        python3-numpy && \
     apt-get -y autoremove && \
     apt-get clean autoclean && \
