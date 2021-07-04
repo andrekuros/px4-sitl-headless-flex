@@ -30,7 +30,7 @@ RUN apt-get update && \
                        xvfb \                       
                        iproute2 \
                        net-tools \
-                       iputils \
+                       iputils-ping \
                        python3-numpy && \
     apt-get -y autoremove && \
     apt-get clean autoclean && \
