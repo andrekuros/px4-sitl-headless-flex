@@ -28,6 +28,8 @@ RUN apt-get update && \
                        libgstreamer-plugins-base1.0-dev \
                        libgstrtspserver-1.0-dev \
                        xvfb \
+                       iputils-ping \
+                       net-tools \
                        python3-numpy && \
     apt-get -y autoremove && \
     apt-get clean autoclean && \
