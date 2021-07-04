@@ -27,9 +27,8 @@ RUN apt-get update && \
                        gstreamer1.0-plugins-ugly \
                        libgstreamer-plugins-base1.0-dev \
                        libgstrtspserver-1.0-dev \
-                       xvfb \
-                       iputils-ping \
-                       net-tools \
+                       xvfb \                       
+                       iproute2 \
                        python3-numpy && \
     apt-get -y autoremove && \
     apt-get clean autoclean && \
