@@ -4,7 +4,7 @@ This project is based on JonasVautherin/px4-gazebo-headless (https://github.com/
 
 **BUILD**   
 ```
-sudo docker build https://github.com/andrekuros/px4-sitl-headless-flex.git#main -t px4-sitl-headless-flex
+sudo docker build https://github.com/andrekuros/px4-sitl-headless-flex.git#main -t andrekuros/px4-sitl-headless-flex
 ``` 
 
 **RUN**
