@@ -2,6 +2,8 @@
 
 This project is based on JonasVautherin/px4-gazebo-headless (https://github.com/JonasVautherin/px4-gazebo-headless), an unofficial Ubuntu-based container building and running PX4 SITL (Software In The Loop) through gazebo (maybe JSBSIM and AIRSIM in future). The solution aims to add more flexibility to change the SITL params when running docker image with the lastest version of PX4. The idea is to allow inicializations in different conditions and configurations, becoming more suitable for a wider range of applications. 
 
+DockerHub Image: https://hub.docker.com/r/andrekuros/px4-sitl-headless-flex
+
 **BUILD**   
 ```
 sudo docker build https://github.com/andrekuros/px4-sitl-headless-flex.git#main -t andrekuros/px4-sitl-headless-flex
