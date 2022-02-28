@@ -40,7 +40,8 @@ RUN pip3 install empy \
                  packaging \
                  pyros-genmsg \
                  toml \
-                 pyyaml
+                 pyyaml \
+                 kconfiglib
 
 RUN git clone https://github.com/PX4/PX4-Autopilot.git ${FIRMWARE_DIR}
 RUN git -C ${FIRMWARE_DIR} checkout master
