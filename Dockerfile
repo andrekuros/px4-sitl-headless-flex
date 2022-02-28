@@ -1,33 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@andrekuros 
-JonasVautherin
-/
-px4-gazebo-headless
-Public
-Code
-Issues
-3
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-px4-gazebo-headless/Dockerfile
-@JonasVautherin
-JonasVautherin Fix upstream build
-Latest commit fb8285a on 12 Aug 2021
- History
- 3 contributors
-@julianoes@JonasVautherin@MartijnGevaert
-63 lines (54 sloc)  2 KB
-   
 FROM ubuntu:18.04
 
 ENV WORKSPACE_DIR /root
@@ -91,16 +61,3 @@ RUN cmake -B${SITL_RTSP_PROXY}/build -H${SITL_RTSP_PROXY}
 RUN cmake --build ${SITL_RTSP_PROXY}/build
 
 ENTRYPOINT ["/root/entrypoint.sh"]
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
