@@ -29,8 +29,7 @@ RUN apt-get update && \
                        python3-jsonschema \
                        python3-numpy \
                        python3-pip \
-                       unzip \
-                       future \
+                       unzip \                       
                        xvfb && \
     apt-get -y autoremove && \
     apt-get clean autoclean && \
@@ -42,7 +41,8 @@ RUN pip3 install empy \
                  pyros-genmsg \
                  toml \
                  pyyaml \
-                 kconfiglib
+                 kconfiglib \
+                 future 
 
 RUN git clone https://github.com/PX4/PX4-Autopilot.git ${FIRMWARE_DIR}
 RUN git -C ${FIRMWARE_DIR} checkout master
