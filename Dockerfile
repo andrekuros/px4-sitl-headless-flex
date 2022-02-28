@@ -30,6 +30,7 @@ RUN apt-get update && \
                        python3-numpy \
                        python3-pip \
                        unzip \
+                       future \
                        xvfb && \
     apt-get -y autoremove && \
     apt-get clean autoclean && \
