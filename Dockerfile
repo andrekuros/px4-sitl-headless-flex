@@ -29,7 +29,8 @@ RUN apt-get update && \
                        python3-jsonschema \
                        python3-numpy \
                        python3-pip \
-                       unzip \                       
+                       unzip \ 
+                       net-tools \
                        xvfb && \
     apt-get -y autoremove && \
     apt-get clean autoclean && \
